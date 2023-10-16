@@ -1,5 +1,5 @@
 import { useReducer } from "react";
-
+import "./app.css";
 import TodoList from "./components/TodoList";
 import TodoAddForm from "./components/TodoAddForm";
 

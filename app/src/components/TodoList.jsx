@@ -1,3 +1,4 @@
+
 import EditForm from "./editForm";
 const TodoList = ({ todos, handleDelete, handleEdit, handleDone,handleUpdate }) => {
   function handleCheck(e, id) {
@@ -13,7 +14,7 @@ const TodoList = ({ todos, handleDelete, handleEdit, handleDone,handleUpdate }) 
       <h1>My todos</h1>
       <div>
        {todos.map((t) => (
-  <div key={t.id}>
+  <div key={t.id} className={t.isDone ? "strikethrough" : ""}>
     {t.isEdit ? (
       <EditForm
         text={t.text} // Pass the text to be edited
