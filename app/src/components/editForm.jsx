@@ -1,15 +1,22 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-function EditForm({ todos }) {
-  
+const EditForm = ({ text, onSave }) => {
+  const [editedText, setEditedText] = useState(text);
+
+  const handleSave = () => {
+    onSave(editedText);
+  };
+
   return (
-    <form>
-      <div>
-        <input type="text" name="" id="" value="hello" />
-
-        <button>Update</button>
-      </div>
-    </form>
+    <div>
+      <input
+        type="text"
+        value={editedText}
+        onChange={(e) => setEditedText(e.target.value)}
+      />
+      <button onClick={handleSave}>Save</button>
+    </div>
   );
-}
+};
+
 export default EditForm;

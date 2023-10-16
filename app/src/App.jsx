@@ -39,6 +39,7 @@ function App() {
         console.log("working" + action.value);
         return newTodos;
       }
+
       case "TODO_DONE": {
         const newTodos = [...todos];
         const idx = newTodos.findIndex((nt) => nt.id === action.value);
@@ -54,6 +55,9 @@ function App() {
           newTodos[idx]["isDone"] = false;
         }
         return newTodos;
+      }
+      case "TODO_UPDATE": {
+        return action.todos; 
       }
       default: {
         throw Error("Unknown action: " + action.type);
@@ -93,6 +97,19 @@ function App() {
     }
   }
 
+  function handleUpdate(id, newText) {
+    // Update the todos state to reflect the changes
+    const updatedTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        return { ...todo, text: newText };
+      }
+      return todo;
+    });
+
+    // Dispatch an action to update the todos state
+    dispatch({ type: "TODO_UPDATE", todos: updatedTodos });
+  }
+
   return (
     <>
       <h1>My todo</h1>
@@ -103,6 +120,7 @@ function App() {
         handleDelete={handleDelete}
         handleDone={handleDone}
         handleEdit={handleEdit}
+        handleUpdate={handleUpdate}
       />
     </>
   );
