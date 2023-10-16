@@ -1,6 +1,5 @@
 
 import EditForm from "./editForm";
-
 const TodoList = ({ todos, handleDelete, handleEdit, handleDone,handleUpdate }) => {
   function handleCheck(e, id) {
     
