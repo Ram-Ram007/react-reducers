@@ -57,7 +57,7 @@ function App() {
         return newTodos;
       }
       case "TODO_UPDATE": {
-        return action.todos; 
+        return action.todos;
       }
       default: {
         throw Error("Unknown action: " + action.type);
