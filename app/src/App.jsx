@@ -101,13 +101,13 @@ function App() {
     // Update the todos state to reflect the changes
     const updatedTodos = todos.map((todo) => {
       if (todo.id === id) {
-        return { ...todo, text: newText };
+        return { ...todo, text: newText, isEdit: false };
       }
       return todo;
     });
 
     // Dispatch an action to update the todos state
-    dispatch({ type: "TODO_UPDATE", todos: updatedTodos });
+    dispatch({ type: "TODO_UPDATE", todos: updatedTodos, todos: updatedTodos });
   }
 
   return (
