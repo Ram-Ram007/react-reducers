@@ -1,5 +1,6 @@
 
 import EditForm from "./editForm";
+
 const TodoList = ({ todos, handleDelete, handleEdit, handleDone,handleUpdate }) => {
   function handleCheck(e, id) {
     
@@ -38,14 +39,6 @@ const TodoList = ({ todos, handleDelete, handleEdit, handleDone,handleUpdate }) 
   </div>
 ))}
       </div>
-
-      {/* {todos.map((t) => (
-        <div key={t.id}>
-          <input type="text" name="" id="" value={t.text} />
-
-          <button onClick={() => handleDelete(t.id)}>Update</button>
-        </div>
-      ))} */}
     </div>
   );
 };

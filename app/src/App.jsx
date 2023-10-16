@@ -1,4 +1,4 @@
-import { useReducer,useEffect } from "react";
+import { useReducer, useEffect } from "react";
 import "./app.css";
 import TodoList from "./components/TodoList";
 import TodoAddForm from "./components/TodoAddForm";
@@ -6,15 +6,22 @@ import TodoAddForm from "./components/TodoAddForm";
 const LOCAL_STORAGE_KEY = "todos";
 
 function App() {
-  const [todos, dispatch] = useReducer(todoReducer, [],(initial)=>{
+  //When an action is dispatched and the todoReducer function processes the action, it returns a new state based on the action's type.
+  //todos: This is a variable that will hold the state of your to-do items.
+  //dispatch: This is a function that you can use to dispatch actions to modify the todos state.
+  const [todos, dispatch] = useReducer(todoReducer, [], (initial) => {
     const localData = localStorage.getItem(LOCAL_STORAGE_KEY);
     return localData ? JSON.parse(localData) : initial;
   });
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos));
   }, [todos]);
-  
+
   function todoReducer(todos, action) {
+    // In a React application, you typically have various actions
+    //  that can be triggered by user interactions or other events.
+    // These actions are dispatched using the dispatch function,
+    //which is provided by useReducer or useDispatch when working with state management tools like Redux.
     switch (action.type) {
       case "TODO_ADD": {
         return [
@@ -38,7 +45,7 @@ function App() {
         if (idx !== -1) {
           newTodos[idx]["isEdit"] = true;
         }
-        console.log("working" + action.value);
+
         return newTodos;
       }
 
@@ -109,7 +116,10 @@ function App() {
     });
 
     // Dispatch an action to update the todos state
-    dispatch({ type: "TODO_UPDATE", todos: updatedTodos, todos: updatedTodos });
+    dispatch({
+      type: "TODO_UPDATE",
+      todos: updatedTodos,
+    });
   }
 
   return (
