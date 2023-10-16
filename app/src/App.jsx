@@ -1,18 +1,19 @@
-import { useReducer } from "react";
+import { useReducer,useEffect } from "react";
 import "./app.css";
 import TodoList from "./components/TodoList";
 import TodoAddForm from "./components/TodoAddForm";
 
-/*
-{
-  id: 123,
-  text: 'Foo',
-  isDone: false
-}
-*/
-function App() {
-  const [todos, dispatch] = useReducer(todoReducer, []);
+const LOCAL_STORAGE_KEY = "todos";
 
+function App() {
+  const [todos, dispatch] = useReducer(todoReducer, [],(initial)=>{
+    const localData = localStorage.getItem(LOCAL_STORAGE_KEY);
+    return localData ? JSON.parse(localData) : initial;
+  });
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos));
+  }, [todos]);
+  
   function todoReducer(todos, action) {
     switch (action.type) {
       case "TODO_ADD": {
@@ -26,6 +27,7 @@ function App() {
           },
         ];
       }
+
       case "TODO_DELETE": {
         const filtered = todos.filter((t) => t.id != action.value);
         return [...filtered];
