@@ -5,3 +5,5 @@
 ## Added validation for minimum and maximum value
 
 ## Added strike line.
+
+## Local storage added
